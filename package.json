@@ -1,0 +1,25 @@
+{
+  "name": "effect-rpc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@effect/platform": "^0.55.7",
+    "@effect/platform-node": "^0.51.7",
+    "@effect/rpc": "^0.30.42",
+    "@effect/rpc-http": "^0.28.42",
+    "@effect/schema": "^0.67.20",
+    "effect": "^3.2.9"
+  },
+  "packageManager": "pnpm@9.2.0+sha256.94fab213df221c55b6956b14a2264c21c6203cca9f0b3b95ff2fe9b84b120390",
+  "devDependencies": {
+    "typescript": "^5.4.5",
+    "@types/node": "^20.14.2"
+  }
+}
