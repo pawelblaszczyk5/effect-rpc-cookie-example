@@ -6,16 +6,16 @@ import { Effect, Layer } from "effect";
 import { createServer } from "node:http";
 import { Signup } from "./schema.js";
 
-const signupUser = (signup: Signup) =>
-  Effect.succeed("cookie value with session");
-
 // Implement the RPC server router
 const router = Router.make(
   Rpc.effect(Signup, (signup) =>
     Effect.gen(function* () {
-      const cookieValue = yield* signupUser(signup);
-
+      yield* HttpServer.app.appendPreResponseHandler((_, res) =>
+        Effect.orDie(HttpServer.response.setCookie(res, "bla", "blu"))
+      );
       // How to approach forwarding this cookie to response?
+
+      yield* HttpServer.app.currentPreResponseHandlers.pipe(Effect.log);
     })
   )
 );
