@@ -1,7 +1,7 @@
 import { NodeHttpServer, NodeRuntime } from "@effect/platform-node";
 import { HttpServer } from "@effect/platform";
 import { Router, Rpc } from "@effect/rpc";
-import { HttpRouter } from "@effect/rpc-http";
+import { HttpRouterNoStream } from "@effect/rpc-http";
 import { Effect, Layer } from "effect";
 import { createServer } from "node:http";
 import { Signup } from "./schema.js";
@@ -24,7 +24,7 @@ export type Router = typeof router;
 
 // Create the http server
 const HttpLive = HttpServer.router.empty.pipe(
-  HttpServer.router.post("/rpc", HttpRouter.toHttpApp(router)),
+  HttpServer.router.post("/rpc", HttpRouterNoStream.toHttpApp(router)),
   HttpServer.server.serve(HttpServer.middleware.logger),
   HttpServer.server.withLogAddress,
   Layer.provide(NodeHttpServer.server.layer(createServer, { port: 3000 }))
